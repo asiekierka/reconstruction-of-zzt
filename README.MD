@@ -1,11 +1,11 @@
 # The Reconstruction of ZZT
 
-The Reconstruction of ZZT is a reverse-engineered recreation of the source code to the last official release of 
+The Reconstruction of ZZT is a reverse-engineered recreation of the source code to the last official release of
 [ZZT](https://museumofzzt.com/about-zzt), ZZT 3.2. The output executable is byte-for-byte identical with said
 release, which means that the source code accurately represents the original engine's behavior.
 
-The intent behind this project is to faciliate improved preservation and accessibility of ZZT's worlds and community,
-as well as faciliate new, exciting developments.
+The intent behind this project is to facilitate improved preservation and accessibility of ZZT's worlds and community,
+as well as facilitate new, exciting developments.
 
 ## Frequently Asked Questions
 
@@ -20,14 +20,14 @@ There are many ways to run ZZT on a modern PC. While pretty much anything capabl
 
 The official ZZT worlds originally released with the game can be found [here](https://museumofzzt.com/file/z/zzt.zip).
 
-Beyond that, I highly recommend checking out the [Museum of ZZT](https://museumofzzt.com/), particularly its Featured 
+Beyond that, I highly recommend checking out the [Museum of ZZT](https://museumofzzt.com/), particularly its Featured
 Games section, to find amazing worlds created by the ZZT community over the past three decades.
 
 ### How can I create ZZT worlds of my own?
 
 ZZT comes with a built-in editor and documentation - just press "E"!
 
-However, please note that the community has since created more powerful editors, the most popular of which is [KevEdit](https://github.com/cknave/kevedit/releases). 
+However, please note that the community has since created more powerful editors, the most popular of which is [KevEdit](https://github.com/cknave/kevedit/releases).
 This is currently the recommended solution. Dr. Dos has created a [live stream series](https://www.youtube.com/watch?v=suIKp6HLBC8&list=PL71MurckxMeDCeOrKZ5Gd58GtC1ZmU-BW)
 on YouTube detailing how to use Zeta and KevEdit to create your own ZZT worlds.
 
@@ -59,7 +59,7 @@ adequately catalogued and preserved, please contact me at (kontakt at asie dot p
     * **LICENSE.HLP** - licensing terms for the source code release, formatted for in-game view,
     * END1.MSG, END2.MSG, END3.MSG, END4.MSG - registration messages for the shareware version of ZZT; not present,
 * **MISC** - miscellaneous files which are not part of the build process:
-    * **relocfix.py** - Python 3 script for fixing relocation table semgents in EXE binaries after LZEXE decompression,
+    * **relocfix.py** - Python 3 script for fixing relocation table segments in EXE binaries after LZEXE decompression,
 * **RES** - resource files which are not otherwise recompiled:
     * **DEMO.ZZT** - the official ZZT demonstration world,
     * **ZZT.CFG** - the ZZT configuration file used for the binary distribution,
@@ -133,5 +133,5 @@ version of the engine - with the exception of some structures, like TStat, which
 
 ## Greetings
 
-I'd like to thank everyone who has spent the last few years contributing to the rebirth of the small ZZT community. It is thanks to your passion and dedication 
+I'd like to thank everyone who has spent the last few years contributing to the rebirth of the small ZZT community. It is thanks to your passion and dedication
 that this project has been made possible.
