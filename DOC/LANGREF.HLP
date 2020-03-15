@@ -1,0 +1,564 @@
+$ZZT-OOP Programming Language
+$Reference Manual
+
+Contents:
+
+!fmts;Program format
+!cmds;Commands
+!msgs;Messages
+!dirs;Directions
+!flags;Flags
+
+
+:fmts;Program Format.
+
+     Besides direct commands, ZZT-OOP
+programs contain other statements that
+serve varying purposes.
+
+     Each type of statement has an
+associated symbol:
+
+   @  #  /  ?  :  '  !
+
+     Their meanings:
+
+:;     @objectname
+When this is on the first line of an
+object, it identifies the object by name.
+If an object is not given a name, there is
+no way to direct messages to it.
+
+:;     #command
+Identifies a programming language command.
+
+:;     /direction
+Causes the object to move in the given
+direction.  If it is blocked, it will wait
+until it is free.
+
+:;     ?direction
+Tells an object to try to move in a given
+direction.  If its movement is blocked,
+the command will be ignored.
+
+:;     :label
+Identifies the part of the program that
+handles a specified message.  Whenever
+the program receives the message, it
+will execute statements following the
+label.
+
+:;     'comment
+Comments have no effect, but serve to
+remind you (the programmer) what you were
+doing when you wrote the program.
+
+:;     text
+When program execution comes to a line of
+text, the text will be displayed on the
+screen.  If only a one-line message is
+given, it will be flashed on the bottom
+of the screen as a message.  For multiple
+lines, a "scroll" will be opened up on
+screen and the text will appear.
+
+:;     !msg;text
+A hypertext-like button.  When this
+statement is included among text
+descriptions, it appears to the player
+as a button...
+!;Just like this.
+Then, as the users view the text, he may
+position the cursor on the button and
+press enter, causing the supplied message
+to be sent.
+   
+   
+:msgs;Messages.
+
+     An object can send and receive
+(exchange) messages with itself,
+other objects, and the game itself.
+
+    Messages caused by the game itself:
+
+    TOUCH    (When player touches Program)
+    SHOT     (Program is hit by bullet)
+    BOMBED   (Bomb explodes near program)
+    THUD     (Program WALKs into wall)
+    ENERGIZE (Player touches ENERGIZER)
+
+
+:dirs;Directions:
+
+$N, NORTH
+$S, SOUTH
+$E, EAST 
+$W, WEST 
+    Compass directions
+$I, IDLE 
+    No direction, stationary.
+$SEEK    
+    The direction toward the player
+$FLOW    
+    The direction in which the object is
+    currently walking.
+$RNDNS   
+    Either North or South, at random.
+$RNDNE   
+    Either North or East, at random.
+$CW <direction>
+    Clockwise from the given direction,
+    i.e. CW NORTH = EAST.
+$CCW <direction>
+    Counter-clockwise from the given
+    direction.  CW NORTH = WEST.
+$RNDP <direction>
+    A random direction perpendicular to
+    the given direction.  For example,
+    RNDP NORTH = either EAST or WEST.
+$OPP <direction>
+    Opposite the given direction. i.e.,
+    OPP NORTH = SOUTH.
+
+     Here are some example commands to
+demonstrate the use of directions:
+
+#GO CW RNDNS  'Go either east or west.
+#GO OPP SEEK  'Go away from the player.
+#WALK CW FLOW 'Turn clockwise from the
+              'direction we're walking in.
+
+
+:flags;Flag manipulation:
+
+     Objects can manipulate simple
+variables called flags.  A flag assumes
+one of two possible states: SET and
+CLEAR.  Objects can alter flags, then
+take action accordingly.
+
+     Flags are not associated with
+individual objects or rooms.  A flag set
+by one object can be accessed by all
+other objects in all rooms.
+
+     Three commands are useful here:
+
+:set;#SET <flag variable>
+:clear;#CLEAR <flag variable>
+     Set and clear flag variables.
+
+:if;#IF <flag> [THEN] <message>
+     Tests the condition of a flag.  If
+the flag is SET, the message is sent.
+Otherwise, the instruction is ignored.
+
+     In addition to user-declared flags,
+several "internal" flags can be accessed
+by any object:
+
+$ALLIGNED
+     This flag is SET whenever the object
+is alligned with the player either
+horizontally or vertically.
+
+$CONTACT
+     This flag is SET whenever the object
+is adjacent to (touching) the player.
+
+$BLOCKED <direction>
+     This flag is SET when the object is
+not free to move in the given direction,
+and CLEAR when the object is free to
+move in the direction.
+
+$ENERGIZED
+     This flag is SET whenever the player
+has touched an energizer and can not be
+harmed by creatures and bullets.
+
+
+:cmds;Programming commands:
+
+     All ZZT-OOP commands are preceeded by
+the pound sign (#).  The following
+commands are supported:
+
+!become;#BECOME <kind>
+!bind;#BIND <objectname>
+!change;#CHANGE <kind> <kind>
+!char;#CHAR <number>
+!flags;#CLEAR <flag variable>
+!cycle;#CYCLE <number>
+!die;#DIE
+!end;#END
+!endgame;#ENDGAME
+!give;#GIVE <item> <number>
+!go;#GO <direction>
+!idle;#IDLE
+!if;#IF <flag> [THEN] <message>
+!lock;#LOCK
+!play;#PLAY <sound>
+!put;#PUT <direction> <kind>
+!restart;#RESTART
+!restore;#RESTORE <message>
+!send;#SEND <message>
+!flags;#SET <flag variable>
+!shoot;#SHOOT <direction>
+!take;#TAKE <item> <number> [<message>]
+!throwstar;#THROWSTAR <direction>
+!try;#TRY <direction>
+!unlock;#UNLOCK
+!walk;#WALK <direction>
+!zap;#ZAP <message>
+
+$Descriptions of commands:
+
+:send;#SEND <message>
+
+     Similar to basic's "GOTO" command.
+#SEND followed by the name of a label
+within the program will cause program
+execution to continue at that label.
+
+Example:  :ABCDEF
+          ...program loop goes here...
+          #SEND ABCDEF
+
+#SEND <objectname>:<message>
+
+     Causes the execution of a different
+program to continue at a specified label
+within that program.  By using this
+command, several creatures can be
+coordinated.  For example, the player
+touches Creature A.  Creature A tells
+Creature B to attack the player.
+     
+Example:  :TOUCH
+          #SEND CreatureB:AttackPlayer
+
+Note:     If the program receiving the
+          message is in the locked state,
+          the command will be ignored. 
+          See the #LOCK command for more
+          information.
+
+Note:     If there are two or more
+          programs with the given name,
+          the message will be sent to
+          all of them.
+
+#SEND ALL:<message>
+
+     Sends a given message to ALL of the
+objects on the board.
+
+
+:end;#END
+
+     Causes program operation to halt. 
+The object will just sit idly by until
+stimulated by a message.
+
+
+:restart;#RESTART
+
+     Causes the program to go back to the
+top and start over.
+
+
+:go;#GO <direction>
+
+     Causes an object to move in a
+specified direction.  The object will
+push boulders forward if they are in the
+way.  If the object can not move in the
+given direction, it will stand by until
+either it can move, or it is stimulated by
+a message.
+
+!dirs;Valid directions
+
+
+:try;#TRY <direction> [<message>]
+
+     Causes the object to move in the
+given direction if it is not blocked.
+Otherwise, the given message will be sent.
+
+
+:walk;#WALK <direction>
+
+     Sets the object moving in the given
+direction.  The object will continue
+moving and executing commands.
+
+     To cause a program to cease walking,
+issue the "Walk Idle" command:
+
+#WALK I
+
+     When an object WALKs into a wall, it
+automatically receives a THUD message.
+
+
+:idle;#IDLE
+
+     Directs the creature to do absolutely
+nothing until it is updated next.  Same as
+the /I command.
+
+
+:endgame;#ENDGAME
+
+     This command takes away all of the
+player's health, terminating the game.
+If the player has a high score, it will
+be recorded.
+
+
+:die;#DIE
+
+     The object will instantly vanish
+when this command is issued.  Program
+execution halts, and the object is erased
+from the screen.  The game will continue
+on without it.
+
+
+:shoot;#SHOOT <direction>
+
+     Attempts to fire a bullet in the
+given direction. Example:
+
+#SHOOT SEEK   'fires a bullet
+              'toward the player
+
+
+:throwstar;#THROWSTAR <direction>
+
+     Causes the object to thow a star in
+the given direction.  The star will try
+to collide with the player.
+
+
+:zap;#ZAP <message>
+
+     Disables the first occurance of a
+label by turning it into a comment.  For
+example, #ZAP TOUCH would turn the label
+TOUCH into the comment 'TOUCH.  Allows a
+program to have several routines with the
+same labels, so that the desired label is
+called at the appropriate time.  Remember
+that the #SEND command always calls the
+first occurence of a label.  For example:
+
+     :TOUCH 'will be called first time
+            'creature is touched
+     "You touched me for the first time"
+     #ZAP TOUCH
+     #END
+     :TOUCH  'will be called all
+             'subsequent times
+     "You touched me again."
+     #END
+
+
+:restore;#RESTORE message
+
+     Changes a ZAPped label back into a
+normal label.  Then, on subsequent calls
+to the label, the original one will be
+called instead of a secondary one.
+
+
+:lock;#LOCK
+
+     Puts a program into the "locked"
+state, so it will not be affected by any
+incomming messages.  Often, conflicts
+occur when two messages are sent to a
+program in a short amount of time.  The
+second message interrupts the program
+before it can finish handling the first
+one.  However, if a program LOCKs itself
+when dealing with messages, it can not be
+disturbed.
+
+:unlock;#UNLOCK
+
+     Removes a program from the "locked"
+state, so it is free to receive incomming
+messages.  Any messages that happened to
+arrive while it was LOCKed are lost.
+
+Example:  :TOUCH
+          #LOCK
+          'code to handle "touch"
+          'message goes here...
+          #UNLOCK
+          #END
+
+
+:give;#GIVE <item> <quantity>
+
+     Gives a certain quantity of an item
+to the player.  Good for giving bonus
+points, selling ammo, awarding extra
+health, etc.
+
+     Items:
+     AMMO
+     GEMS
+     TORCHES
+     HEALTH
+     SCORE
+
+Example:  #GIVE AMMO 10  (gives the player
+          10 extra shots)
+
+
+:take;#TAKE <item> <quantity> [<message>]
+
+     Attempts to take a certain quantity
+of an item from the player.  If the player
+does not have the given amount, none will
+be taken, and if a message is given, it
+will be sent.
+
+Example:  #TAKE GEMS 2 TooPoor
+          "Thank you for the gems!"
+          #END
+          :TooPoor
+          "You don't have enough gems!"
+          #END
+
+
+:play;#PLAY <music>
+
+     Plays a musical score in the
+background as the game continues.
+
+     Music:
+
+     _> [Optional parameters] [Notes] <_
+    /                                   \
+    \___________________________________/
+
+     Parameters:
+
+     T    32nd note follows
+     S    Sixteenth
+     I    Eighth
+     Q    Quarter
+     H    Half
+     W    Whole
+     3    Triplets: cut previous duration
+          into thirds. For example,
+          "Q3ABC" would play the notes A,
+          B, and C, with all three taking
+          up the time of a quarter note.
+     .    Adds time-and-a-half.  For
+          example, "H." would turn a half-
+          note into a half-note tied to a
+          quarter note.
+     +    Up octave
+     -    Down octave
+     
+$Notes & rests:
+     X    Rest
+     A-G  Piano notes, can be followed by:
+     #    Sharp
+     !    Flat
+
+$Rythmic sound effects:
+     0    Tick
+     1    Tweet
+     2    Cowbell
+     3    <<no effect, denotes triplet>>
+     4    Hi snare
+     5    High woodblock
+     6    Low snare
+     7    Low tom
+     8    Low woodblock
+     9    Bass drum
+
+
+:change;#CHANGE <kind> <kind>
+
+     Changes every specified item on the
+board into another item.  <Kind> is the
+name of an item, creature, or terrain as
+listed in the editor (by pressing f1, f2,
+or f3), but with all punctuation and
+spaces removed.  Examples:
+
+#CHANGE LION GEM 'Turns all lions on
+                 'the board into gems.
+#CHANGE KEY SLIDEREW  'Changes all keys
+                 'into east-west sliders.
+#CHANGE RED KEY CONVEYOR1 'Changes all red
+                 'keys into conveyors.
+
+
+:put;#PUT <direction> <kind>
+
+     This causes a specified item to be
+placed adjacent to the object issuing the
+command.  Examples:
+
+#PUT N BLUE KEY  'Places a blue key
+                 'north of us.
+#PUT SEEK TIGER  'Puts a tiger in the
+                 'direction of the player.
+
+!change;What does <Kind> mean?
+
+
+:become;#BECOME <kind>
+
+     Causes the object to suddenly change
+form into a specified item or creature.
+The object's program then ceases to
+exist.
+
+!change;What does <kind> mean?
+
+
+:char;#CHAR <number>
+
+     Causes the object to change form, so
+that it is reprented on the screen as a
+different character.  <Number> can range
+from 0 to 255, and should be the ASCII
+code of the new character.  Find a manual
+with a list of ASCII codes for reference.
+
+
+:cycle;#CYCLE <number>
+
+     Sets the speed at which an object is
+updated.  This can range from 1 (fastest)
+to 255 (ridiculusly slow.)  When no CYCLE
+speed is specified, it defaults to 3.
+
+
+:bind;#BIND <objectname>
+
+    When a Program executes this
+instruction, it's code will be replaced
+by the code of another object, and it will
+start executing instructions from the
+beginning.
+
+    This is a useful and space-saving
+technique.  Rather than creating ten
+objects with the same program (which
+would be stored in memory ten times),
+create one object with the program, and
+nine others that contain only a BIND
+statement.

@@ -1,0 +1,83 @@
+$Getting Started.
+
+   If you can't quite figure out what to
+do in this game, remember the following:
+
+   *  If you see something unusual, try
+      touching it.  The worst that can
+      happen is... Death!
+
+   *  Don't forget that you can usually
+      leave the room you are in by walking
+      off the edge of the screen.
+
+   *  Save the game often.  Then, if you
+      get stuck or you die, you can just
+      go back and restore it where you
+      left off.
+
+   *  Keep an open mind.  This is ZZT,
+      The Object-Oriented Game, and just
+      about anything can (and probably
+      will) happen.
+
+$Health points
+
+   When you begin a new game,  you start
+with 100 health points.  Every time you
+get shot or touched by a creature,  you
+lose 10.  When your health reaches zero,
+the game is over.
+
+   You can regain health by picking up
+gems - each gem gives you 1 health point.
+
+$Using the Keyboard
+
+   To move around, use the four cursor
+keys or the numeric keypad.
+
+   To shoot, hold down the [Shift] key
+and press the cursor key in the direction
+you wish to shoot.
+
+
+$Using a Joystick
+
+   ZZT fully supports joystick operation.
+To move, just point the joystick in the
+desired direction.  To shoot, hold down
+the button then move the stick in the
+direction you wish to shoot.
+
+   To use a joystick, you must say so when
+you first run ZZT and you are prompted
+"Keyboard, Joystick, Mouse?".  If you
+have not done this, leave the program
+and start over.
+
+   At times, you may prefer to use the
+keyboard for more accurate maneuvers.
+
+
+$Using a Mouse
+
+   To move, just drag the mouse in the
+desired direction.  You will have to
+keep dragging the mouse as long as
+you want to move.
+
+   To move continually in a certain
+direction, first hold down the right-hand
+button on the mouse.  Next, push the
+mouse slightly in the direction you wish
+to move.  You will continue moving in that
+direction, without any effort, until
+the button is released.
+
+   To fire, just hold down the left-hand
+mouse button and push the mouse gently
+in the direction you wish to shoot.
+
+   At times, you may prefer to use the
+keyboard for more accurate maneuvers.

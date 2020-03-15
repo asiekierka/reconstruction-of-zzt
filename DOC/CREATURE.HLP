@@ -1,0 +1,148 @@
+$Creatures
+
+     From the world editor, press F2 to
+bring up the menu of creatures.  A wide
+variety are available, each with different
+characteristics.
+
+!bears;Bears
+!centis;Centipedes
+!lions;Lions
+!objects;Objects
+!pushers;Pushers
+!ruffians;Ruffians
+!sharks;Sharks
+!slime;Slime
+!guns;Spinning guns
+
+Attributes:
+
+     Many types of creatures have
+attributes, such as intelligence,
+sensitivity, and direction, that can be
+customized.  These attributes affect
+different aspects of a creature's
+movement.
+
+     Some creatures have an Intelligence
+setting.  This affects how well the
+creature will find the player.  One with a
+low intelligence moves largely at random,
+while an intelligent creature actively
+follows the player.
+
+Note:
+
+     There is not space to describe each
+creature in much detail.  You must learn
+by experimenting and watching the behavior
+of all of the creatures.
+
+
+:bears;Bears:
+
+     Bears are attracted to the player
+when the two are close together.  Their
+goal is to attack the player.
+
+     When a bear comes into contact with
+a Breakable Wall, both disappear.
+
+
+:ruffians;Ruffians:
+
+     Ruffians move sporadically,
+alternately moving and resting.  They
+will try to catch the player.
+
+
+:objects;Objects:
+
+     Objects are a versatile kind of
+creature and can be customized using the
+ZZT-OOP programming language.
+
+     When placing an Object on the
+board, you may pick any character to
+represent it.  Then, you enter commands
+to control the creature during game play.
+
+     If you want to modify the program of
+an already-existing Object, position the
+cursor above it and press [ENTER].
+
+!-lang;Programming instructions.
+
+
+:slime;Slime:
+
+     A single Slime will spread out by
+replicating itself until an entire region
+is filled.  Slime only oozes through empty
+space, so it is blocked by walls.
+
+     As slime spreads out, it leaves a
+trail of breakable walls.  The player can
+stop the slime by touching it;  the only
+threat it poses is in trapping the player.
+
+
+:sharks;Sharks:
+
+     Sharks travel through water only, and
+hurt the player upon contact.  They are
+not harmed by bullets.
+
+
+:guns;Spinning guns:
+
+     Spinning guns rotate and shoot in
+random directions.  By placing walls on
+various sides of a gun, it can be aimed
+in any desired direction.
+
+
+:pushers;Pushers:
+
+     Pushers move slowly in a given
+direction, pushing Boulders and Sliders
+ahead of them.  They can move the
+player, but do not pose a direct threat.
+
+
+:lions;Lions:
+
+     Lions move quickly about the board,
+attracted to the player according to their
+intelligence.  Lions can not shoot.
+
+
+:tigers;Tigers:
+
+     Tigers move toward the player and
+shoot bullets.
+
+     These bullets are harmful only
+to the player.  In fact, no creatures will
+directly harm other creatures.
+
+
+:centis;Centipedes:
+
+     These are the most interesting type
+of creature, because they can contain
+many different parts linked together.
+
+     A Centipede consists of a Head and
+several body Segments.  The Head decides
+where to move, and the body follows
+behind.
+
+     To place a Centipede on the board,
+first place the Head, then put Body
+segments along side, in a line.  All parts
+must be in contact.
+
+     When a Centipede is shot, it will
+break up into two smaller centipedes,
+which move independently.

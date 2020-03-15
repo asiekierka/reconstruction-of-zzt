@@ -1,0 +1,112 @@
+$Terrains
+
+     Terrains are the most important part
+of any ZZT board because they form the
+foundation upon which the game's action
+is based.
+
+     Walls, Boulders, Forest, and other
+terrains can be arranged to form puzzles,
+mazes, and scenery.  Each type of terrain
+has unique properties.
+
+$Water
+
+     Neither players nor creatues can
+travel through water, but bullets pass
+freely over it.  The player must
+maneuver around water, taking care to
+avoid bullets passing over it.
+
+     Sharks are the only kind of creature
+that can travel through water, but they
+can not move through land.
+
+$Forest
+
+     The player can move through forest,
+clearing a path behind him.  Creatures
+can not move through forest, but readily
+follow the player through cleared paths.
+
+$Solid and Normal Walls
+
+     These walls form a barrier that is
+always impenetrable.  Nobody walks through
+walls.  Period.
+
+$Breakable Walls
+
+     These walls also block the player and
+all creatures, but can be destroyed.
+
+     When a breakable wall is shot with a
+bullet, one piece of the wall disappears.
+Also, when a bomb explodes, all breakable
+walls in the vicinity of the bomb are
+destroyed.
+
+$Boulders
+
+     Boulders are solid objects that can
+be pushed around by the player.
+
+     By combining boulders, pushers,
+walls, and other objects, a variety of
+challenging thought puzzles can be
+created.
+
+$Sliders
+
+     Sliders are similar to boulders, but
+are confined to move in a line.  A slider
+looks like a line with two arrows at
+opposite ends, and can only move in the
+direction of the arrows.
+
+$Fake walls
+
+     Fake walls look exactly like normal
+walls, but have no effect on the player.
+The player can walk over fake walls just
+as if they were empty space.  Fake walls
+are meant for creating secret passages.
+
+$Invisible walls
+
+     Invisible walls look like empty space
+to the player, but prevent the player
+from moving over them.  When the player
+touches an invisible wall, it suddenly
+appears as a normal wall.  Creatures can
+not pass through invisible walls either.
+
+$Blinking walls
+
+     A blinking wall placed on the board
+emitts a ray pointing in a specified
+direction.  This ray blinks on and off
+at a constant rate, and forms a barrier
+that is difficult for the player to cross.
+
+     When created, each blinking wall
+must be assigned a starting time and
+a duration.  By creating a line of
+walls with the same duration but varying
+start times, a moving wave appears.
+
+$Transporter
+
+     When the player enters a transporter,
+he is magically moved to another area of
+the board.
+
+     Each transporter points in a given
+direction, and the player can only enter
+the transporter from behind.  He is
+then moved along a line, in the direction
+of the transporter, to the nearest
+transporter that points in the opposite
+direction.
+
+$- - -

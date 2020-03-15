@@ -1,0 +1,91 @@
+$ZZT-OOP
+$Programming Language Tutorial
+
+   The best way to learn something is to
+jump right in, so let's not waste any
+time:
+
+   To put an object on the board,  press
+F2 O.  After picking a character to
+represent the object,  you can enter a
+program to control it.
+
+$Here is an example program
+
+ Commands    Comments
+ ----------  ---------------------------
+
+ @BadGuy     ' We are giving this object
+             '    the name "BadGuy".
+ /s/s/s      ' Start out by moving south
+             '    three times.
+ #shoot n    ' Next, shoot north.
+ #end        ' Now stop and wait for us
+             '    to receive a message.
+ :shot       ' When we receive a "SHOT"
+             '    message, start doing
+             '    the following commands.
+ #shoot seek ' Shoot towards the player.
+ #end        ' Stop and wait for another
+             '    message.
+ :touch      ' Do the following when we
+             '    receive a "TOUCH" msg.
+ Ouch! Stop touching me.
+             ' Put the preceeding text
+             '    on the screen.
+ #send shot  ' Next, send ourselves the
+             '    message "SHOT".
+
+   Note that the "SHOT" message will be
+sent to BadGuy whenever the player shoots
+BadGuy.  Likewise, when the player touches
+BadGuy, BadGuy will receive the "TOUCH"
+message.
+
+   ZZT-OOP is a relatively simple language
+and its commands are straightforward.
+
+   The primary difference between ZZT-OOP
+and conventional languages such as BASIC
+is the use of messages.
+
+   The following two objects illustrate
+a more intense use of messages:
+
+$Here is the first object:
+
+ @Lefty            ' This object's name.
+ /e/e/e/e          ' Move east 4 times.
+ /w/w/w/w          ' Then west 4 times.
+ #send Righty:Do   ' Send the "Do" message
+                   '   to the object named
+                   '   "Righty".
+ #end              ' And halt.
+
+$Here is the other object:
+
+ @Righty           ' This is our name.
+ #end              ' Don't do anything
+                   '    until we receive
+                   '    a message.
+ :do               ' Here's the "Do" msg.
+ /w/w/w/w          ' Move west 4 times.
+ /e/e/e/e          ' Then east 4 times.
+ #send lefty:restart'Tell our counterpart
+                   '    to restart.
+ #end              ' Done for now.
+
+   These two objects form a feedback loop.
+When the game starts, Lefty will move
+then send a message to Righty.  This
+causes Righty to move then tell Lefty to
+restart.  So lefty moves, etc, etc, etc.
+
+$- - -
+
+   So concludes this mini-tutorial.  Once
+you think you have a grasp of the idea of
+ZZT-OOP programs and messages, you are
+ready to proceed to...
+
+!-langref;The ZZT-OOP reference manual.

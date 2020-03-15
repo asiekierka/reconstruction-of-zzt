@@ -1,0 +1,92 @@
+$ZZT-OOP
+$Programming Language
+
+Table of contents:
+!ov;Overview.
+!-langtut;Tutorial.
+!-langref;Reference manual.
+
+:Ov;Overview.
+
+     ZZT provides a special type of
+creature, the Object, that can be made to
+interact with the player and the
+environment by using a small object-
+oriented command language.  Objects
+are very versatile, and can move, talk and
+bargain with the player, and communicate
+with other Objects.
+
+     To put an Object on the playing
+field, type F2 O.  Next, you can choose a
+character to represent the Object.
+Finally, you can enter a program to
+control it.
+
+     To change an Object's program, move
+the cursor to the Object and press Enter.
+
+
+$How they work.
+
+     During game play, the Objects are
+actively controlled by their associated
+programs.  Commands are executed in tempo
+with the game.  Usually, an Object is
+updated 4 or 5 times per second, and
+several commands are executed on each
+update.
+
+     Objects communicate with each other
+and with the environment by sending and
+receiving messages.  Understanding ZZT-OOP
+is often difficult because it is possible
+to have many objects operating at the same
+time, and each object can interact with
+any other object at any time.
+
+$Interaction.
+
+     A programmable creature can put
+flashing one-line messages at the bottom
+of the screen.  It can also put multi-
+line scrolling messages on the screen. 
+These messages can be interactive, so that
+the player can pick choices from a menu.
+
+     Objects can also move, shoot, and
+interact with other objects.
+
+$Messages - What are they?
+
+     ZZT's programming language is object-
+oriented, meaning that a program's flow of
+execution is controlled by sending and
+receiving messages.  Whenever an important
+event occurs, a message is sent to an
+object.  This causes the program to
+execute specific instructions to handle
+the event.  Messages can come from two
+sources:  from other programmable creatues
+and from the game itself.
+
+     For example, whenever the player
+touches an object, that object receives
+the message, "TOUCH".  The object can
+then act on the message, for example by
+greeting the player or attacking.  Or,
+the object can ignore the message.
+
+     Similarly, objects can communicate
+with each other by exchanging messages.
+For example, a board contains a "BUTTON"
+object and a "GATE" object.  The player
+touches the button.  Upon being touched,
+the button sends the message "OPEN" to
+the gate object.  The gate, upon
+receiving this message, moves aside.
+
+     The first step to learning ZZT-OOP is
+seeing actual programs with explainations:
+
+!-langtut;ZZT-OOP Tutorial.

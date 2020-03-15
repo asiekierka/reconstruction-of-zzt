@@ -1,0 +1,160 @@
+$Items
+
+The following items are available:
+
+!ammo;Ammunition
+!bombs;Bombs
+!conv;Conveyors
+!doors;Doors
+!dupes;Duplicators
+!energ;Energizers
+!gems;Gems
+!keys;Keys
+!pass;Passages
+!scrolls;Scrolls
+!torches;Torches
+
+
+:ammo;Ammunition
+
+     When the player touches a unit of
+ammo, he receives five bullets.
+
+
+:torches;Torches.
+
+     A Torch gives visibility in rooms
+which are dark.  The player picks up a
+torch by touching it, but the torch does
+not become lit until the player activates
+it by pressing "T".
+
+     Torches last only a fraction of a
+minute, and provide limited visibility in
+rooms that are dark.
+
+     To make a room dark, press "I" for
+the Board Information Menu and select the
+"Room is dark" option.
+
+
+:gems;Gems.
+
+     Gems are bonus points for a player.
+Touching a gem awards the player ten
+bonus points and one unit of health.
+
+     By using ZZT-OOP's "GIVE" and "TAKE"
+commands, you can create objects that
+trade supplies or just about anything in
+exchange for gems.
+
+
+:keys;Keys.
+
+     Keys are used to unlock doors.  They
+are color-coded, so there are seven colors
+of keys.  To unlock a door, the player
+must posess a key of the same color.
+
+     The player can not hold two keys of
+the same color, though he can hold all
+seven different-colored keys at the same
+time.
+
+
+:doors;Doors.
+
+     Doors prevent the player from
+entering a region.  To get through a door,
+the player must be holding a matching
+key.  If this is the case, then the door
+will open and the player will lose
+posession of the key.
+
+
+:scrolls;Scrolls.
+
+     Scrolls contain text messages, such
+as hints, dialog, and puzzles.  When the
+player touches a scroll, the message
+appears for the player to read.
+
+     If the scroll contains only one line
+of text, the message will be flashed on
+the bottom of the screen.  Otherwise,
+a window will pop up and the player may
+browse through the text.
+
+
+:pass;Passages.
+
+     A passage is a gateway to another
+room.  When you place a passage on the
+board, you must specify which room is 
+through the passage.
+
+     Whenever the player touches a
+passage, he is transported to a new
+room.  The player will be placed in the
+new room as follows:
+
+*  If there is a matching passage in the
+   new room, the player will enter the
+   destination room through it.  To
+   match, the exit and entrance passages
+   must be the same color.
+
+*  Otherwise, the player will be arrive
+   in the destination board on the spot
+   where he appears in the board editor.
+
+
+:dupes;Duplicators.
+
+     A duplicator slowly replicates an
+object placed next to it.
+
+     First, put a creature somewhere on
+the board.  Next, place a duplicator
+adjacent to it, and specify the direction
+pointing to the creature.  Finally, put
+walls around the original creature so
+that it remains next to the duplicator.
+
+     Duplicators can be used to fill up
+a board with creatures as a game
+progresses.
+
+
+:bombs;Bombs.
+
+     The player activates a bomb by
+touching it.  The bomb begins counting
+down from 9, exploding when it reaches 1.
+While a bomb is ticking, the player can
+move it around by pushing it.
+
+     When a bomb explodes, it will zap
+all Creatures and Breakable Walls in
+close proximity.
+
+
+:energ;Energizers.
+
+     Touching an energizer gives the
+player a brief taste of invincibility.
+During this time, the player changes
+colors and is free to come into contact
+with normally harmful creatures.
+
+
+:conv;Conveyors.
+
+     Conveyors cause adjacent objects to
+move.  Both clockwise and counter-
+clockwise rotating conveyors exist.
+
+     By placing several conveyors
+together, objects can be made to
+circulate in nearly any desired pattern.

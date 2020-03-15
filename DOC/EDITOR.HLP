@@ -1,0 +1,85 @@
+$The ZZT Editor
+
+Help is available on the following topics:
+!start;Getting Started
+!cmds;Editor Commands
+!-creature;Creatures
+!-terrain;Terrains
+!-item;Items
+!-lang;ZZT-OOP Programming Language
+!-info;Board information menu
+
+:start;Getting started:
+
+   The ZZT Editor is a tool for
+creating silly ZZT game worlds.
+
+   By using the editor, you can create
+individual game boards and then link them
+together into a larger entity called a
+"world".
+
+   The editor functions the same as many
+drawing programs:  Starting with a blank
+screen, objects are added and arranged
+until an interesting picture emerges.
+Once a board has been created, it can be
+saved to disk and then played, just like
+a ready-made game.
+
+   The editor is somewhat complex, so it
+takes time to master.  Begin by creating
+a few simple boards, then work you way
+up to more complex scenarios at your own
+pace.  The results will be well worth the
+effort.
+
+
+:cmds;Editing commands:
+
+[L]  Load a world from disk.
+[S]  Save a world to disk.
+[Q]  Quit the ZZT Editor.
+[B]  Switch boards.  Also use this command
+     to create a new board.
+[I]  Board Information:  Change the
+     characteristics of the particular
+     board being edited.
+!-info;More about Board Information.
+[f1] Place an item on the board.
+[f2] Place a creature on the board.
+[f3] Place terrain on the board.
+[f4] Enter text onto the board.  Use this
+     to spruce up your boards with
+     entertaining messages.  During
+     gameplay, text acts like walls.
+[Space] Place the selected pattern on the
+     board.  The pattern is indicated on
+     the bottom right of the screen.
+[Tab] Toggle drawing mode.  When drawing
+     mode is on, the current pattern will
+     automatically be placed wherever the
+     cursor is moved.
+[P]  Select pattern.
+[C]  Select color.
+
+   Some useful commands are not listed on
+the screen.  These are:
+
+[Z]  Clear board.
+[X]  Fill in bounded region with
+     current pattern - just draw the
+     outline of a shape and use this
+     command to fill it in.
+[Enter] Modify object under cursor:
+     Allows you to change the
+     properties of an object
+     that has already been
+     placed.
+[N]  New: Create a new world.
+[T]  Transfer:  Import or Export boards.
+     Allows individual boards to be
+     brought in or out of worlds.
+     A board from one world can be
+     written to a file, then read back
+     into a different world.

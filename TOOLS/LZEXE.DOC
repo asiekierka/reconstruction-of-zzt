@@ -1,0 +1,270 @@
+    Documentation pour:
+    -------------------
+    LZEXE.EXE v0.91    (c) 1989 Fabrice BELLARD
+    Compacteur de fichiers EXE.
+    
+    
+    Ce programme fait parti du domaine public (FREEWARE),  donc vous pouvez
+  l'utiliser, le copier et le distribuer sans problŠme. Et vous pouvez mˆme
+  en faire un usage commercial, c'est … dire compacter des fichiers EXE que
+  vous allez vendre. Mais la vente de LZEXE.EXE est interdite.
+    
+    
+    Mat‚riel:  PC et compatibles, microprocesseur 80286 ou 80386 recommand‚
+  pour une plus grande vitesse d'ex‚cution.
+    M‚moire n‚cessaire: 128 Ko minimum pour lancer LZEXE.
+    
+    
+    1-Pr‚sentation
+    --------------
+    
+        Ce logiciel  compacte  des fichiers  EXE, c'est-…-dire les fichiers
+  EXEcutable du monde des  PC.  Mais vous pourriez me dire que  beaucoup de
+  logiciels  compactent des fichiers EXE mieux que  celui-ci,  ne serait-ce
+  que  l'excellent PKZIP ou  bien  LHARC.  Mais l'avantage de  ce programme
+  c'est que vos fichiers EXE une fois compact‚s peuvent ˆtre lanc‚s ! Et le
+  d‚compactage est si  rapide que  pour pratiquement tous  les fichiers, ce
+  temps de d‚compactage est n‚gligeable ! De plus le d‚compacteur n'utilise
+  aucun espace suppl‚mentaire sur disque ou en m‚moire vive dans  un disque
+  virtuel par exemple:  il  n'utilise que la  RAM  r‚serv‚e  normalement au
+  fichier EXE d‚compact‚.  De plus j'ai beaucoup optimis‚ mon algorithme de
+  compactage  en  vitesse mais aussi  en efficacit‚:  les fichiers EXE sont
+  presque  aussi petits  que les fichiers  ZIP correspondants  et bien plus
+  compacts que les anciens fichiers  ARC.  Mais d'autres versions  de LZEXE
+  suivront qui  je  l'espŠre  iront  encore  plus  vite  et  genŠreront des
+  fichiers plus compacts. 
+    
+    2-Utilisation de LZEXE
+    ----------------------
+    
+        C'est trŠs simple: il suffit de taper sous DOS:
+    
+    LZEXE nomfichier[.EXE]
+    
+    o— "nomfichier"  est le nom du fichier EXE que  vous  voulez compacter.
+  L'extension  .EXE  est ajout‚e par d‚faut.  Le fichier compact‚  est cr‚‚
+  dans le r‚pertoire par d‚faut.
+    
+    Attention !  Certains fichiers ne sont EXE que par leur  nom: en effet,
+  pour  le DOS,  ce n'est pas l'extension .EXE  qui caract‚rise ce  type de
+  fichier,  c'est le fait qu'il y ait au d‚but les lettres  "MZ" suivies de
+  quelques octets qui indiquent la  longueur du fichier,  la taille m‚moire
+  qu'il occupe,  etc... Ainsi certaines personnes n'h‚sitent pas … renommer
+  des fichiers  COM en  EXE,  et  cela  explique que  LZEXE refuse certains
+  fichiers EXE qui ne sont que des COM renomm‚s.
+    
+    Mais  il  existe  une m‚thode pour  faire accepter  des fichiers  COM …
+  LZEXE:  il  suffit d'utiliser COMTOEXE  du mˆme auteur  qui convertit ces
+  derniers en EXE (il fait l'inverse de EXE2BIN).
+    
+    Pour plus de s–ret‚, LZEXE n'efface pas votre ancien fichier EXE: il le
+  renomme en *.OLD.  De plus,  il cr‚e le fichier temporaire  LZEXE.TMP qui
+  n'est renomm‚ en *.EXE qu'… la fin du compactage.
+    
+    3-Conseils d'utilisation
+    ------------------------
+    
+        Pour certains fichiers,  le compactage peut ne pas fonctionner pour
+  plusieurs raisons:
+    
+    -  Le fichier que vous avez sp‚cifi‚ n'est pas un  vrai  EXE. Solution:
+  utiliser COMTOEXE.EXE
+    -  La table de relocation est trop grande.  Pour comprendre ce message,
+  il est n‚cessaire de connaŒtre  la structure interne d'un fichier EXE: un
+  tel  fichier peut  s'‚taler  sur plusieurs segments  … la  diff‚rence des
+  fichiers COM. C'est pourquoi il lui faut une table de valeurs qui indique
+  dans  quel  segment se  font  les  branchements  ou  les  appels  de sous
+  programmes par exemple.  Et si le fichier est trŠs long, cette table peut
+  ˆtre trŠs encombrante et empˆcher  le compacteur d'agir.  N‚anmoins, j'ai
+  pr‚vu 16000  adresses de relocation, ce qui devrait suffire pour tous les
+  fichiers EXE, mˆme les plus gros.
+    - Le fichier que vous avez sp‚cifi‚ a d‚j… ‚t‚ compact‚ avec LZEXE. 
+    
+    Notons  qu'un  autre  compacteur  de  fichiers  existe:  EXEPACK.EXE de
+  Microsoft.  Mais il est de loin beaucoup moins efficace  que le  mien, et
+  mˆme si  votre fichier EXE est d‚j…  compact‚  avec  ce  programme, LZEXE
+  pourra encore beaucoup compacter. Mais dans ce cas, un message de mise en
+  garde  vous  est pr‚sent‚,  car  il  existe  un autre  utilitaire du mˆme
+  auteur:  UPACKEXE  qui permet  de  d‚compacter ces fichiers  et ainsi les
+  gains sont encore plus importants.
+    
+    -  Le compactage n'a pas ‚t‚ assez efficace et fait  perdre de l'espace
+  sur disque:  H‚ oui,  ‡a peut arriver,  mais g‚n‚ralement avec les petits
+  EXE (moins  de  2  Ko).  Sinon, vous pourrez pratiquement toujours gagner
+  quelques octets. 
+    
+    -  Le fichier EXE contient des overlays internes:  ce sont des morceaux
+  de programme qui se trouvent  dans le fichier EXE mais  qui  sont charg‚s
+  seulement quand le programme principal en a besoin. LZEXE ne peut pas les
+  compacter car il  faudrait  modifier  le routines de  chargement qui sont
+  dans le programme principal, et malheureusement ces routines d‚pendent du
+  compilateur et du programmeur.  Dans la version 0.91,  LZEXE  vous met en
+  garde de leur pr‚sence. Mais dans beaucoup de cas, la diff‚rence entre la
+  longueur  du  fichier EXE sur disque  et  la longueur du  code charg‚ est
+  minime  (moins  de  1024  octets)  :  dans ce cas, vous pouvez quand mˆme
+  compacter car il s'agit de "marques" laiss‚es par certains compilateurs.
+    
+    
+    Plus grave: certains fichiers EXE compact‚s "planteront" la machine:
+    
+    -  Si le programme EXE fait un test sur la taille ou  sur son int‚grit‚
+  sur disque (c'est trŠs rare).
+    -  S'il contient des overlays, qui doivent ˆtre charg‚s ensuite et donc
+  qui doivent occuper des positions fixes dans le fichier.
+    -  Pour les programmes qui marchent sous Windows (de  Microsoft): ce ne
+  sont pas  de vrais EXE,  donc ils refuseront  de fonctionner correctement
+  sous l'int‚grateur.
+    (cette liste n'est pas exhaustive)
+    
+    
+    Moins grave: Certains programmes possŠdent des options de configuration
+  qui modifient le fichier EXE (Turbo Pascal par exemple).  Dans ce cas, il
+  faut d'abord configurer le programme  puis le compacter et  conserver une
+  version non compact‚e pour pouvoir la modifier.
+    
+    
+    4-Du point de vue technique (pour les connaisseurs !)
+    -----------------------------------------------------
+    
+    L'algorithme  de  compactage  que j'ai  fait  est fond‚ sur  la fameuse
+  m‚thode de Ziv Lempel utilisant  un buffer "circulaire"  (ring buffer) et
+  une m‚thode  de recherche des  r‚p‚titions de s‚quences  d'octets par des
+  arbres.  Le codage  de  la  position et la  longueur de la  chaŒne qui se
+  r‚pŠtent est optimis‚ par un algorithme annexe  inspir‚ de  la m‚thode de
+  Huffman. Les octets non compact‚s sont envoy‚s tels quels dans le fichier
+  car un algorithme de compression annexe (  comme "Adaptive Huffman" (voir
+  LHARC)  ou avec des arbres de Shanon-Fano (voir PKZIP))  aurait n‚cessit‚
+  un temps de d‚compactage plus  important et surtout  un d‚compacteur plus
+  complexe et long, ce qui aurait en fait allong‚ le fichier EXE compact‚.
+    
+    Le d‚compacteur est log‚ … la fin du fichier EXE et fait  395 octets de
+  long pour la version 0.90 et 330 pour la version 0.91.  Il  doit:
+    -  Contr“ler le CRC pour s'assurer que personne  ne  l'a modifi‚ (utile
+  contre les virus). Si oui, afficher le message: "CRC Error". Cette option
+  a ‚t‚ enlev‚e  dans LZEXE v0.91  car elle allonge  inutilement le fichier
+  EXE et le temps de d‚compactage.  De plus le contr“le du CRC n'‚tait fait
+  que sur le d‚compacteur. 
+    -  Se d‚placer en haut de la RAM,  puis d‚placer le code  compact‚ pour
+  laisser un peu de place au fichier EXE
+    -  D‚compacter  le  code,  en contr“lant qu'il est  correct, et surtout
+  ajuster les segments si on d‚passe 64  Ko  (ce qui m'a pos‚ des problŠmes
+  en terme de vitesse)
+    -  D‚compacter la table de  relocation,  et mettre …  jour les adresses
+  relogeables de fichiers EXE.  C'est ici que LZEXE v0.91 a ‚t‚ modifi‚: la
+  table de relocation est beaucoup mieux compact‚e.
+    - Lancer le programme en mettant … jour CS,IP,SS,SP
+    
+    C'est tout !!!
+    
+    Ce d‚compacteur est … lui seul un petit  chef-d'oeuvre de programmation
+  en assembleur 8086: inutile de vous dire que sa mise au point a ‚t‚ assez
+  longue. 
+    Mais le compacteur m'a aussi pos‚ pas mal de  problŠmes, notamment pour
+  mettre … jour  tous  les pointeurs que  le  d‚compacteur  utilise  par la
+  suite.
+    
+    
+    5-LZEXE version 0.91 et les autres compacteurs
+    ----------------------------------------------
+    
+    PKARC (derniŠre version):  LZEXE  fait  beaucoup  mieux, le "crunching"
+  (alias Shrinking pour PKZIP) ‚tant un algorithme d‚pass‚...
+    
+    PKZIP v0.92:  LZEXE mieux dans pratiquement tous les  cas.
+    
+    PKZIP v1.02:  sur  les  gros  fichiers,  LZEXE  fait  mieux.  sinon, la
+  diff‚rence  est assez faible.
+    LHARC  v1.01:  il fait mieux que LZEXE avec  "freezing"  sur les petits
+  fichiers.
+    
+    LARC: LZEXE fait mieux.
+    
+    Remarques importantes: 
+    -  On ne peut pas vraiment comparer ce  que fait LZEXE  avec les autres
+  compacteurs puisque dans les fichiers EXE compact‚s  par mon soft  il y a
+  aussi  un  d‚compacteur  qui le  lance tout  seul.  N‚anmoins  les autres
+  compacteurs  peuvent  faire  des  fichiers  "self-extracting",  mais  ils
+  d‚compactent sur disque,  sont lents et ajoutent plusieurs dizaines de Ko
+  aux fichier compact‚s (sauf pour LARC et LHARC qui n'ajoutent  qu'1  ou 2
+  Ko, mais qui ne d‚compactent que sur disque malheureusement).
+    - Dans presque tous les cas, les compacteurs que j'ai cit‚s ne pourront
+  pas recompacter plus un fichier d‚j… r‚duit avec LZEXE, ce qui montre son
+  efficacit‚. Seul LHarc arrive … gagner quelques octets.
+    
+    
+    6-L'avenir...
+    -------------
+    
+    -  je  pense aussi … un  d‚compacteur  automatique de  documentation du
+  genre de LISEZMOI.COM  ou LIST.COM qui serait  trŠs commode  et peut ˆtre
+  que je vais en faire un.
+    -  Enfin, j'espŠre faire un compacteur "universel" comme PKZIP ou LHARC
+  plus lent que LZEXE en d‚compactage mais qui fera beaucoup mieux  que ces
+  derniers.
+    
+    
+    7-Mises en garde et voeux...
+    ---------------------------
+    
+    J'espŠre  que LZEXE  et  les  fichiers  EXE  compact‚s  par  lui seront
+  beaucoup  diffus‚s  ce  qui m'incitera  …  faire  d'autres  versions plus
+  rapides...
+    
+    Je  d‚cline  toute  responsabilit‚  en  cas   de   perte  d'information
+  occasionn‚ par LZEXE. Mais rassurez-vous, les algorithmes sont fiables et
+  je ne crois pas qu'il y ait beaucoup de bugs.
+    
+    Attention !  Je ne vous conseille pas de  compacter et  de diffuser des
+  logiciels commerciaux prot‚g‚s  par un  copyright:  les  auteurs risquent
+  d'ˆtres m‚contents...
+    
+    Mais si  vous  faites un FREEWARE,  un SHAREWARE,  ou mˆme un programme
+  commercial,  rien ne vous empˆche de le compacter avec LZEXE,  et mˆme je
+  vous le conseille:
+    -  Vos fichiers EXE seront plus petits et on croira que  vos programmes
+  compil‚s seront faits en assembleur. Que dirons vos concurrents quand ils
+  verront des programmes qui font la mˆme chose que les leurs mais 30% plus
+  petits ?  De plus vous pourrez mettre  sur disquette (et sur  disque dur)
+  plus de programmes, car on a toujours besoin d'une plus grande m‚moire de
+  masse...
+    -  Le  compactage constitue un excellent codage  qui peut  empˆcher des
+  personnes peu recommandables de modifier les messages ou bien de voir vos
+  algorithmes  secrets … moins  de  d‚sassembler  le  d‚compacteur,  ce qui
+  risque de n'ˆtre pas trŠs facile, c'est moi qui vous le dit !
+    
+    
+    Voil…,  en esp‚rant que ce  soft vous servira et  qu'il ne  possŠde pas
+  trop de bugs !
+    
+       Fabrice.
+    
+    Voici mon adresse si vous  voulez des  infos sur les algorithmes  ou si
+  vous avez des problŠmes:
+    
+      Fabrice BELLARD
+    451 chemin du mas de Matour
+        34790 GRABELS  (FRANCE)
+    
+    	
+    
+    Mon pseudo sur RTEL ou QBBS: FAB
+    
+    
+    
+    Evolution des versions:
+    
+    LZEXE v0.91:
+    ------------
+    - Le tiret "-" n'‚tait pas accept‚ dans le noms de fichiers, cela a ‚t‚
+  corrig‚.
+    - LZEXE signale la pr‚sence des overlays internes.
+    -  LZEXE  indique si  le  fichier a d‚j…  ‚t‚ compact‚  avec EXEPACK de
+  Microsoft.
+    -  Un bug de  la  version 0.90  faisait  occuper  trop  de  mˆmoire aux
+  fichiers EXE: cela a ‚t‚ corrig‚.
+    - Le compactage de la table de relocation a ‚t‚ am‚lior‚.
+    - Le contr“le du CRC a ‚t‚ enlev‚.
+    - La taille du d‚compacteur est pass‚e de 395 … 330 octets.
+    
+    
+
