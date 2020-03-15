@@ -1,8 +1,8 @@
 # The Reconstruction of ZZT
 
-The Reconstruction of ZZT is a reverse-engineered recreation of the source code to the last official release of ZZT,
-ZZT 3.2. The output executable is byte-for-byte identical with said release, which means that the source code accurately
-represents the original engine's behavior.
+The Reconstruction of ZZT is a reverse-engineered recreation of the source code to the last official release of 
+[ZZT](https://museumofzzt.com/about-zzt), ZZT 3.2. The output executable is byte-for-byte identical with said
+release, which means that the source code accurately represents the original engine's behavior.
 
 The intent behind this project is to faciliate improved preservation and accessibility of ZZT's worlds and community,
 as well as faciliate new, exciting developments.
