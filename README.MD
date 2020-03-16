@@ -50,6 +50,11 @@ This release's binary distribution includes:
 
 The source code includes the source format for both ZZT.EXE and ZZT.DAT, as well as relevant tools.
 
+### Why did the source code have to be reconstructed?
+
+This is because the original source code to ZZT
+[was lost a long time ago](https://web.archive.org/web/19991010013339/http://www.epicgames.com/zzt.htm).
+
 ### I'm a ZZTer from back in the day and I have some backups from that period. Are they still useful?
 
 **Yes!** There are many ZZT worlds, utilities, and other documents which have not yet been preserved. If you'd like to share them and see them be
