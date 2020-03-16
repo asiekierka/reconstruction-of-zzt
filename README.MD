@@ -9,6 +9,14 @@ as well as facilitate new, exciting developments.
 
 ## Frequently Asked Questions
 
+### What is ZZT?
+
+ZZT is an adventure game created by Tim Sweeney and released in January 1991 for DOS computers. What set it apart was the
+inclusion of a fully-featured world editor in the shareware release. Since then, ZZT has gone on to inspire thousands of
+players and game creators all around the world.
+
+You can learn more about ZZT through the [Museum of ZZT](https://museumofzzt.com/about-zzt).
+
 ### How can I run the original ZZT on a modern computer?
 
 There are many ways to run ZZT on a modern PC. While pretty much anything capable of running DOS will do the trick, the recommended ones are:
