@@ -80,8 +80,8 @@ procedure EditorLoop;
 		i, iElem: integer;
 		canModify: boolean;
 		unk1: array[0 .. 49] of byte;
-		copiedStat: TStat; { 68 : 6b }
-		copiedHasStat: boolean; { 6d }
+		copiedStat: TStat;
+		copiedHasStat: boolean;
 		copiedTile: TTile;
 		copiedX, copiedY: integer;
 		cursorBlinker: integer;
