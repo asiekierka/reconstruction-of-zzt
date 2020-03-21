@@ -36,10 +36,6 @@ interface
 		VideoWriteText: TVideoWriteTextProc;
 		VideoMonochrome: boolean;
 	function VideoConfigure: boolean;
-	procedure VideoWriteTextCO80(x, y, color: byte; text: TVideoLine);
-	procedure VideoWriteTextCO40(x, y, color: byte; text: TVideoLine);
-	procedure VideoWriteTextBW80(x, y, color: byte; text: TVideoLine);
-	procedure VideoWriteTextBW40(x, y, color: byte; text: TVideoLine);
 	procedure VideoInstall(columns, borderColor: integer);
 	procedure VideoUninstall;
 	procedure VideoShowCursor;
@@ -55,6 +51,8 @@ var
 	VideoTextSegment: word;
 	VideoTextPointer: pointer;
 	VideoCursorVisible: boolean;
+
+{$F+}
 
 procedure VideoWriteTextCO80(x, y, color: byte; text: TVideoLine);
 	begin
@@ -313,6 +311,8 @@ procedure VideoWriteTextBW40(x, y, color: byte; text: TVideoLine);
 			$FB                  { STI }
 		);
 	end;
+
+{$F-}
 
 function VideoConfigure: boolean;
 	var

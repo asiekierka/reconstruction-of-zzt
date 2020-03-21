@@ -50,7 +50,7 @@ procedure ElementDefaultTick(statId: integer);
 	begin
 	end;
 
-procedure ElementDefaultTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementDefaultTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	begin
 	end;
 
@@ -77,9 +77,9 @@ procedure ElementMessageTimerTick(statId: integer);
 		end;
 	end;
 
-procedure ElementDamagingTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementDamagingTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	begin
-		EnemyDamage(unkArg1, x, y);
+		BoardAttack(sourceStatId, x, y);
 	end;
 
 procedure ElementLionTick(statId: integer);
@@ -95,7 +95,7 @@ procedure ElementLionTick(statId: integer);
 			if ElementDefs[Board.Tiles[X + deltaX][Y + deltaY].Element].Walkable then begin
 				MoveStat(statId, X + deltaX, Y + deltaY);
 			end else if Board.Tiles[X + deltaX][Y + deltaY].Element = E_PLAYER then begin
-				EnemyDamage(statId, X + deltaX, Y + deltaY)
+				BoardAttack(statId, X + deltaX, Y + deltaY)
 			end;
 		end;
 	end;
@@ -145,7 +145,7 @@ procedure ElementRuffianTick(statId: integer);
 
 				with Board.Tiles[X + StepX][Y + StepY] do begin
 					if Element = E_PLAYER then begin
-						EnemyDamage(statId, X + StepX, Y + StepY)
+						BoardAttack(statId, X + StepX, Y + StepY)
 					end else if ElementDefs[Element].Walkable then begin
 						MoveStat(statId, X + StepX, Y + StepY);
 						if (P2 + 8) <= Random(17) then begin
@@ -188,7 +188,7 @@ procedure ElementBearTick(statId: integer);
 				if ElementDefs[Element].Walkable then begin
 					MoveStat(statId, X + deltaX, Y + deltaY);
 				end else if (Element = E_PLAYER) or (Element = E_BREAKABLE) then begin
-					EnemyDamage(statId, X + deltaX, Y + deltaY)
+					BoardAttack(statId, X + deltaX, Y + deltaY)
 				end;
 			end;
 
@@ -259,7 +259,7 @@ procedure ElementCentipedeHeadTick(statId: integer);
 					Board.Stats[Follower].StepY := StepY;
 					BoardDrawTile(Board.Stats[Follower].X, Board.Stats[Follower].Y);
 				end;
-				EnemyDamage(statId, X + StepX, Y + StepY);
+				BoardAttack(statId, X + StepX, Y + StepY);
 			end else begin
 				MoveStat(statId, X + StepX, Y + StepY);
 				tx := X - StepX;
@@ -353,7 +353,7 @@ procedure ElementBulletTick(statId: integer);
 					World.Info.Score := World.Info.Score + ElementDefs[iElem].ScoreValue;
 					GameUpdateSidebar;
 				end;
-				EnemyDamage(statId, ix, iy);
+				BoardAttack(statId, ix, iy);
 				exit;
 			end;
 
@@ -511,7 +511,7 @@ procedure ElementConveyorTick(x, y: integer; direction: integer);
 
 procedure ElementConveyorCWDraw(x, y: integer; var ch: byte);
 	begin
-		case (CurrentTick div ElementDefs[16].Cycle) mod 4 of
+		case (CurrentTick div ElementDefs[E_CONVEYOR_CW].Cycle) mod 4 of
 			0: ch := 179;
 			1: ch := 47;
 			2: ch := 196;
@@ -528,7 +528,7 @@ procedure ElementConveyorCWTick(statId: integer);
 
 procedure ElementConveyorCCWDraw(x, y: integer; var ch: byte);
 	begin
-		case (CurrentTick div ElementDefs[17].Cycle) mod 4 of
+		case (CurrentTick div ElementDefs[E_CONVEYOR_CCW].Cycle) mod 4 of
 			3: ch := 179;
 			2: ch := 47;
 			1: ch := 196;
@@ -579,7 +579,7 @@ procedure ElementBombTick(statId: integer);
 		end;
 	end;
 
-procedure ElementBombTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementBombTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	begin
 		with Board.Stats[GetStatIdAt(x, y)] do begin
 			if P1 = 0 then begin
@@ -643,7 +643,7 @@ procedure ElementTransporterMove(x, y, deltaX, deltaY: integer);
 		end;
 	end;
 
-procedure ElementTransporterTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementTransporterTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	begin
 		ElementTransporterMove(x - deltaX, y - deltaY, deltaX, deltaY);
 		deltaX := 0;
@@ -684,7 +684,7 @@ procedure ElementStarTick(statId: integer);
 				CalcDirectionSeek(X, Y, StepX, StepY);
 				with Board.Tiles[X + StepX][Y + StepY] do begin
 					if (Element = E_PLAYER) or (Element = E_BREAKABLE) then begin
-						EnemyDamage(statId, X + StepX, Y + StepY);
+						BoardAttack(statId, X + StepX, Y + StepY);
 					end else begin
 						if not ElementDefs[Element].Walkable then
 							ElementPushablePush(X + StepX, Y + StepY, StepX, StepY);
@@ -699,7 +699,7 @@ procedure ElementStarTick(statId: integer);
 		end;
 	end;
 
-procedure ElementEnergizerTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementEnergizerTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	begin
 		SoundQueue(9, #32#3#35#3#36#3#37#3#53#3#37#3#35#3#32#3
 			+ #48#3#35#3#36#3#37#3#53#3#37#3#35#3#32#3
@@ -746,8 +746,8 @@ procedure ElementSlimeTick(statId: integer);
 							Board.Tiles[startX][startY].Element := E_BREAKABLE;
 							BoardDrawTile(startX, startY);
 						end else begin
-							AddStat(startX + NeighborDeltaX[dir], startY + NeighborDeltaY[dir], 37, color,
-								ElementDefs[37].Cycle, StatTemplateDefault);
+							AddStat(startX + NeighborDeltaX[dir], startY + NeighborDeltaY[dir], E_SLIME, color,
+								ElementDefs[E_SLIME].Cycle, StatTemplateDefault);
 							Board.Stats[Board.StatCount].P2 := P2;
 						end;
 
@@ -765,7 +765,7 @@ procedure ElementSlimeTick(statId: integer);
 		end;
 	end;
 
-procedure ElementSlimeTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementSlimeTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	var
 		color: integer;
 	begin
@@ -790,7 +790,7 @@ procedure ElementSharkTick(statId: integer);
 			if Board.Tiles[X + deltaX][Y + deltaY].Element = E_WATER then
 				MoveStat(statId, X + deltaX, Y + deltaY)
 			else if Board.Tiles[X + deltaX][Y + deltaY].Element = E_PLAYER then
-				EnemyDamage(statId, X + deltaX, Y + deltaY);
+				BoardAttack(statId, X + deltaX, Y + deltaY);
 		end;
 	end;
 
@@ -951,7 +951,7 @@ procedure ElementObjectDraw(x, y: integer; var ch: byte);
 		ch := Board.Stats[GetStatIdAt(x, y)].P1;
 	end;
 
-procedure ElementObjectTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementObjectTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	var
 		statId: integer;
 		retVal: boolean;
@@ -1018,7 +1018,7 @@ procedure ElementScrollTick(statId: integer);
 		end;
 	end;
 
-procedure ElementScrollTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementScrollTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	var
 		textWindow: TTextWindowState;
 		statId: integer;
@@ -1039,7 +1039,7 @@ procedure ElementScrollTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY
 		RemoveStat(GetStatIdAt(x, y));
 	end;
 
-procedure ElementKeyTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementKeyTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	var
 		key: integer;
 	begin
@@ -1057,7 +1057,7 @@ procedure ElementKeyTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: i
 		end;
 	end;
 
-procedure ElementAmmoTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementAmmoTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	begin
 		World.Info.Ammo := World.Info.Ammo + 5;
 
@@ -1071,7 +1071,7 @@ procedure ElementAmmoTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: 
 		end;
 	end;
 
-procedure ElementGemTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementGemTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	begin
 		World.Info.Gems := World.Info.Gems + 1;
 		World.Info.Health := World.Info.Health + 1;
@@ -1087,14 +1087,14 @@ procedure ElementGemTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: i
 		end;
 	end;
 
-procedure ElementPassageTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementPassageTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	begin
 		BoardPassageTeleport(x, y);
 		deltaX := 0;
 		deltaY := 0;
 	end;
 
-procedure ElementDoorTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementDoorTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	var
 		key: integer;
 	begin
@@ -1115,7 +1115,7 @@ procedure ElementDoorTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: 
 		end;
 	end;
 
-procedure ElementPushableTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementPushableTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	begin
 		ElementPushablePush(x, y, deltaX, deltaY);
 		SoundQueue(2, #21#1);
@@ -1163,7 +1163,7 @@ procedure ElementPusherTick(statId: integer);
 		end;
 	end;
 
-procedure ElementTorchTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementTorchTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	begin
 		World.Info.Torches := World.Info.Torches + 1;
 		Board.Tiles[x][y].Element := E_EMPTY;
@@ -1179,7 +1179,7 @@ procedure ElementTorchTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY:
 		SoundQueue(3, #48#1#57#1#52#2);
 	end;
 
-procedure ElementInvisibleTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementInvisibleTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	begin
 		with Board.Tiles[x][y] do begin
 			Element := E_NORMAL;
@@ -1190,7 +1190,7 @@ procedure ElementInvisibleTouch(x, y: integer; unkArg1: integer; var deltaX, del
 		end;
 	end;
 
-procedure ElementForestTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementForestTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	begin
 		Board.Tiles[x][y].Element := E_EMPTY;
 		BoardDrawTile(x, y);
@@ -1203,7 +1203,7 @@ procedure ElementForestTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY
 		MessageForestNotShown := false;
 	end;
 
-procedure ElementFakeTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementFakeTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	begin
 		if MessageFakeNotShown then begin
 			DisplayMessage(150, 'A fake wall - secret passage!');
@@ -1211,7 +1211,7 @@ procedure ElementFakeTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: 
 		MessageFakeNotShown := false;
 	end;
 
-procedure ElementBoardEdgeTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementBoardEdgeTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	var
 		neighborId: integer;
 		boardId: integer;
@@ -1238,7 +1238,7 @@ procedure ElementBoardEdgeTouch(x, y: integer; unkArg1: integer; var deltaX, del
 			BoardChange(Board.Info.NeighborBoards[neighborId]);
 			if Board.Tiles[entryX][entryY].Element <> E_PLAYER then begin
 				ElementDefs[Board.Tiles[entryX][entryY].Element].TouchProc(
-					entryX, entryY, unkArg1, InputDeltaX, InputDeltaY);
+					entryX, entryY, sourceStatId, InputDeltaX, InputDeltaY);
 			end;
 
 			if ElementDefs[Board.Tiles[entryX][entryY].Element].Walkable
@@ -1257,7 +1257,7 @@ procedure ElementBoardEdgeTouch(x, y: integer; unkArg1: integer; var deltaX, del
 		end;
 	end;
 
-procedure ElementWaterTouch(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+procedure ElementWaterTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	begin
 		SoundQueue(3, #64#1#80#1);
 		DisplayMessage(100, 'Your way is blocked by water.');

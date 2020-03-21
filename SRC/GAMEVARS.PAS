@@ -50,7 +50,7 @@ interface
 		end;
 		TElementDrawProc = procedure(x, y: integer; var ch: byte);
 		TElementTickProc = procedure(statId: integer);
-		TElementTouchProc = procedure(x, y: integer; unkArg1: integer; var deltaX, deltaY: integer);
+		TElementTouchProc = procedure(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 		TElementDef = record
 			Character: char;
 			Color: byte;
