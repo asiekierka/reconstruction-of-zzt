@@ -278,6 +278,9 @@ interface
 		COLOR_CHOICE_ON_BLACK = $FF;
 		COLOR_WHITE_ON_CHOICE = $FE;
 		COLOR_CHOICE_ON_CHOICE = $FD;
+		{}
+		SHOT_SOURCE_PLAYER = 0;
+		SHOT_SOURCE_ENEMY = 1;
 
 implementation
 

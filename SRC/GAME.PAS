@@ -72,7 +72,7 @@ interface
 	procedure DamageStat(attackerStatId: integer);
 	procedure BoardDamageTile(x, y: integer);
 	procedure BoardAttack(attackerStatId: integer; x, y: integer);
-	function ShootStat(element: byte; tx, ty, deltaX, deltaY: integer; newP1: integer): boolean;
+	function BoardShoot(element: byte; tx, ty, deltaX, deltaY: integer; source: integer): boolean;
 	procedure CalcDirectionRnd(var deltaX, deltaY: integer);
 	procedure CalcDirectionSeek(x, y: integer; var deltaX, deltaY: integer);
 	procedure TransitionDrawBoardChange;
@@ -1243,31 +1243,31 @@ procedure BoardAttack(attackerStatId: integer; x, y: integer);
 		end;
 	end;
 
-function ShootStat(element: byte; tx, ty, deltaX, deltaY: integer; newP1: integer): boolean;
+function BoardShoot(element: byte; tx, ty, deltaX, deltaY: integer; source: integer): boolean;
 	begin
 		if ElementDefs[Board.Tiles[tx + deltaX][ty + deltaY].Element].Walkable
 			or (Board.Tiles[tx + deltaX][ty + deltaY].Element = E_WATER) then
 		begin
 			AddStat(tx + deltaX, ty + deltaY, element, ElementDefs[element].Color, 1, StatTemplateDefault);
 			with Board.Stats[Board.StatCount] do begin
-				P1 := newP1;
+				P1 := source;
 				StepX := deltaX;
 				StepY := deltaY;
 				P2 := 100;
 			end;
-			ShootStat := true;
+			BoardShoot := true;
 		end else if (Board.Tiles[tx + deltaX][ty + deltaY].Element = E_BREAKABLE)
 			or (
 				ElementDefs[Board.Tiles[tx + deltaX][ty + deltaY].Element].Destructible
-				and ((Board.Tiles[tx + deltaX][ty + deltaY].Element = E_PLAYER) = Boolean(newP1))
+				and ((Board.Tiles[tx + deltaX][ty + deltaY].Element = E_PLAYER) = Boolean(source))
 				and (World.Info.EnergizerTicks <= 0)
 			) then
 		begin
 			BoardDamageTile(tx + deltaX, ty + deltaY);
 			SoundQueue(2, #16#1);
-			ShootStat := true;
+			BoardShoot := true;
 		end else begin
-			ShootStat := false;
+			BoardShoot := false;
 		end;
 	end;
 

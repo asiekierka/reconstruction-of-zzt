@@ -331,7 +331,7 @@ procedure WorldClearFlag(name: TString50);
 			World.Info.Flags[WorldGetFlagPosition(name)] := '';
 	end;
 
-function OopStripChars(input: TString50): TString50;
+function OopStringToWord(input: TString50): TString50;
 	var
 		output: string[50];
 		i: integer;
@@ -344,7 +344,7 @@ function OopStripChars(input: TString50): TString50;
 			else if ((input[i] >= 'a') and (input[i] <= 'z')) then
 				output := output + Chr(Ord(input[i]) - $20);
 		end;
-		OopStripChars := output;
+		OopStringToWord := output;
 	end;
 
 function OopParseTile(var statId, position: integer; var tile: TTile): boolean;
@@ -357,7 +357,7 @@ function OopParseTile(var statId, position: integer; var tile: TTile): boolean;
 
 		OopReadWord(statId, position);
 		for i := 1 to 7 do begin
-			if OopWord = OopStripChars(ColorNames[i]) then begin
+			if OopWord = OopStringToWord(ColorNames[i]) then begin
 				tile.Color := i + $08;
 				OopReadWord(statId, position);
 				goto ColorFound;
@@ -366,7 +366,7 @@ function OopParseTile(var statId, position: integer; var tile: TTile): boolean;
 	ColorFound:
 
 		for i := 0 to MAX_ELEMENT do begin
-			if OopWord = OopStripChars(ElementDefs[i].Name) then begin
+			if OopWord = OopStringToWord(ElementDefs[i].Name) then begin
 				OopParseTile := true;
 				tile.Element := i;
 				exit;
@@ -641,12 +641,12 @@ procedure OopExecute(statId: integer; var position: integer; name: TString50);
 								goto ReadCommand;
 						end else if OopWord = 'SHOOT' then begin
 							OopReadDirection(statId, position, deltaX, deltaY);
-							if ShootStat(18, X, Y, deltaX, deltaY, 1) then
+							if BoardShoot(E_BULLET, X, Y, deltaX, deltaY, SHOT_SOURCE_ENEMY) then
 								SoundQueue(2, #48#1#38#1);
 							stopRunning := true;
 						end else if OopWord = 'THROWSTAR' then begin
 							OopReadDirection(statId, position, deltaX, deltaY);
-							if ShootStat(15, X, Y, deltaX, deltaY, 1) then
+							if BoardShoot(E_STAR, X, Y, deltaX, deltaY, SHOT_SOURCE_ENEMY) then
 								begin end;
 							stopRunning := true;
 						end else if (OopWord = 'GIVE') or (OopWord = 'TAKE') then begin
@@ -783,7 +783,7 @@ procedure OopExecute(statId: integer; var position: integer; name: TString50);
 							end;
 						end else if OopWord = 'DIE' then begin
 							replaceStat := true;
-							replaceTile.Element := 0;
+							replaceTile.Element := E_EMPTY;
 							replaceTile.Color := $0F;
 						end else if OopWord = 'BIND' then begin
 							OopReadWord(statId, position);

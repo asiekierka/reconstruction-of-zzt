@@ -112,14 +112,14 @@ procedure ElementTigerTick(statId: integer);
 
 			if (Random(10) * 3) <= (P2 mod $80) then begin
 				if Difference(X, Board.Stats[0].X) <= 2 then begin
-					shot := ShootStat(element, X, Y, 0, Signum(Board.Stats[0].Y - Y), 1);
+					shot := BoardShoot(element, X, Y, 0, Signum(Board.Stats[0].Y - Y), SHOT_SOURCE_ENEMY);
 				end else begin
 					shot := false;
 				end;
 
 				if not shot then begin
 					if Difference(Y, Board.Stats[0].Y) <= 2 then begin
-						shot := ShootStat(element, X, Y, Signum(Board.Stats[0].X - X), 0, 1);
+						shot := BoardShoot(element, X, Y, Signum(Board.Stats[0].X - X), 0, SHOT_SOURCE_ENEMY);
 					end;
 				end;
 			end;
@@ -426,19 +426,19 @@ procedure ElementSpinningGunTick(statId: integer);
 			if Random(9) < (P2 mod $80) then begin
 				if Random(9) <= P1 then begin
 					if Difference(X, Board.Stats[0].X) <= 2 then begin
-						shot := ShootStat(element, X, Y, 0, Signum(Board.Stats[0].Y - Y), 1);
+						shot := BoardShoot(element, X, Y, 0, Signum(Board.Stats[0].Y - Y), SHOT_SOURCE_ENEMY);
 					end else begin
 						shot := false;
 					end;
 
 					if not shot then begin
 						if Difference(Y, Board.Stats[0].Y) <= 2 then begin
-							shot := ShootStat(element, X, Y, Signum(Board.Stats[0].X - X), 0, 1);
+							shot := BoardShoot(element, X, Y, Signum(Board.Stats[0].X - X), 0, SHOT_SOURCE_ENEMY);
 						end;
 					end;
 				end else begin
 					CalcDirectionRnd(deltaX, deltaY);
-					shot := ShootStat(element, X, Y, deltaX, deltaY, 1);
+					shot := BoardShoot(element, X, Y, deltaX, deltaY, SHOT_SOURCE_ENEMY);
 				end;
 			end;
 		end;
@@ -1370,7 +1370,7 @@ procedure ElementPlayerTick(statId: integer);
 								bulletCount := bulletCount + 1;
 
 						if bulletCount < Board.Info.MaxShots then begin
-							if ShootStat(18, X, Y, PlayerDirX, PlayerDirY, 0) then begin
+							if BoardShoot(E_BULLET, X, Y, PlayerDirX, PlayerDirY, SHOT_SOURCE_PLAYER) then begin
 								World.Info.Ammo := World.Info.Ammo - 1;
 								GameUpdateSidebar;
 
