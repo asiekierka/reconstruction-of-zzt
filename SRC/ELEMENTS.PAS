@@ -1418,9 +1418,11 @@ procedure ElementPlayerTick(statId: integer);
 									MessageRoomNotDarkNotShown := false;
 								end;
 							end;
-						end else if MessageOutOfTorchesNotShown then begin
-							DisplayMessage(200, 'You don'#39't have any torches!');
-							MessageOutOfTorchesNotShown := false;
+						end else begin
+							if MessageOutOfTorchesNotShown then begin
+								DisplayMessage(200, 'You don'#39't have any torches!');
+								MessageOutOfTorchesNotShown := false;
+							end;
 						end;
 					end;
 				end;
