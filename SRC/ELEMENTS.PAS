@@ -980,7 +980,7 @@ procedure ElementDuplicatorTick(statId: integer);
 					if Board.Tiles[X - StepX][Y - StepY].Element = E_EMPTY then begin
 						sourceStatId := GetStatIdAt(X + StepX, Y + StepY);
 						if sourceStatId > 0 then begin
-							if Board.StatCount < 174 then begin
+							if Board.StatCount < (MAX_STAT + 24) then begin
 								AddStat(X - StepX, Y - StepY,
 									Board.Tiles[X + StepX][Y + StepY].Element,
 									Board.Tiles[X + StepX][Y + StepY].Color,
@@ -1366,7 +1366,9 @@ procedure ElementPlayerTick(statId: integer);
 					end else begin
 						bulletCount := 0;
 						for i := 0 to Board.StatCount do
-							if (Board.Tiles[Board.Stats[i].X][Board.Stats[i].Y].Element = E_BULLET) and (Board.Stats[i].P1 = 0) then
+							if (Board.Tiles[Board.Stats[i].X][Board.Stats[i].Y].Element = E_BULLET)
+								and (Board.Stats[i].P1 = SHOT_SOURCE_PLAYER)
+							then
 								bulletCount := bulletCount + 1;
 
 						if bulletCount < Board.Info.MaxShots then begin

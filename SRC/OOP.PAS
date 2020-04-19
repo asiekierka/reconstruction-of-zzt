@@ -305,7 +305,7 @@ function WorldGetFlagPosition(name: TString50): integer;
 		i: integer;
 	begin
 		WorldGetFlagPosition := -1;
-		for i := 1 to 10 do begin
+		for i := 1 to MAX_FLAG do begin
 			if World.Info.Flags[i] = name then
 				WorldGetFlagPosition := i;
 		end;
@@ -333,7 +333,7 @@ procedure WorldClearFlag(name: TString50);
 
 function OopStringToWord(input: TString50): TString50;
 	var
-		output: string[50];
+		output: TString50;
 		i: integer;
 	begin
 		output := '';
@@ -408,7 +408,7 @@ procedure OopPlaceTile(x, y: integer; var tile: TTile);
 	var
 		color: byte;
 	begin
-		if Board.Tiles[x][y].Element <> 4 then begin
+		if Board.Tiles[x][y].Element <> E_PLAYER then begin
 			color := tile.Color;
 			if ElementDefs[tile.Element].Color < COLOR_SPECIAL_MIN then
 				color := ElementDefs[tile.Element].Color

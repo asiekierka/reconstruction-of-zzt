@@ -248,7 +248,7 @@ procedure EditorLoop;
 		var
 			state: TTextWindowState;
 			i: integer;
-			numStr: string[50];
+			numStr: TString50;
 			exitRequested: boolean;
 
 		function BoolToString(val: boolean): string;
@@ -672,7 +672,7 @@ procedure EditorLoop;
 				end else if (InputKeyPressed = KEY_BACKSPACE) and (cursorX > 1)
 					and EditorPrepareModifyTile(cursorX - 1, cursorY) then
 				begin
-						cursorX := cursorX - 1;
+					cursorX := cursorX - 1;
 				end else if (InputKeyPressed = KEY_ENTER) or (InputKeyPressed = KEY_ESCAPE) then begin
 					drawMode := DrawingOff;
 					InputKeyPressed := #0;
@@ -1021,7 +1021,7 @@ procedure EditorOpenEditTextWindow(var state: TTextWindowState);
 procedure EditorEditHelpFile;
 	var
 		textWindow: TTextWindowState;
-		filename: string[50];
+		filename: TString50;
 	begin
 		filename := '';
 		SidebarPromptString('File to edit', '.HLP', filename, PROMPT_ALPHANUM);
@@ -1039,7 +1039,7 @@ procedure EditorEditHelpFile;
 procedure HighScoresAdd(score: integer);
 	var
 		textWindow: TTextWindowState;
-		name: string[50];
+		name: TString50;
 		i, listPos: integer;
 	begin
 		listPos := 1;
@@ -1071,7 +1071,7 @@ procedure HighScoresAdd(score: integer);
 function EditorGetBoardName(boardId: integer; titleScreenIsNone: boolean): TString50;
 	var
 		boardData: pointer;
-		copiedName: string[50];
+		copiedName: TString50;
 	begin
 		if (boardId = 0) and titleScreenIsNone then
 			EditorGetBoardName := 'None'

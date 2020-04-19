@@ -35,6 +35,11 @@ interface
 	var
 		VideoWriteText: TVideoWriteTextProc;
 		VideoMonochrome: boolean;
+		VideoColumns: integer;
+		VideoBorderColor: integer;
+		VideoTextSegment: word;
+		VideoTextPointer: pointer;
+		VideoCursorVisible: boolean;
 	function VideoConfigure: boolean;
 	procedure VideoInstall(columns, borderColor: integer);
 	procedure VideoUninstall;
@@ -45,12 +50,6 @@ interface
 
 implementation
 uses Crt, Dos;
-var
-	VideoColumns: integer;
-	VideoBorderColor: integer;
-	VideoTextSegment: word;
-	VideoTextPointer: pointer;
-	VideoCursorVisible: boolean;
 
 {$F+}
 

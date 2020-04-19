@@ -64,6 +64,8 @@ interface
 		InputMouseActivationX, InputMouseActivationY: integer;
 		InputMouseButtonX, InputMouseButtonY: integer;
 		InputJoystickMoved: boolean;
+		JoystickXInitial, JoystickYInitial: integer;
+		InputLastDeltaX, InputLastDeltaY: integer;
 	procedure InputUpdate;
 	procedure InputInitDevices;
 	procedure InputReadWaitKey;
@@ -75,8 +77,6 @@ uses Dos, Crt, Keys, Sounds;
 const
 	PORT_JOYSTICK = $0201;
 var
-	JoystickXInitial, JoystickYInitial: integer;
-	InputLastDeltaX, InputLastDeltaY: integer;
 	JoystickXMin, JoystickXCenter, JoystickXMax: integer;
 	JoystickYMin, JoystickYCenter, JoystickYMax: integer;
 	InputKeyBuffer: string;
