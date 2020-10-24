@@ -51,8 +51,8 @@ interface
 		KEY_PAGE_DOWN = #209;
 		KEY_INSERT = #210;
 		KEY_DELETE = #211;
-		KEY_HOME = #212;
-		KEY_END = #213;
+		KEY_HOME = #199;
+		KEY_END = #207;
 	var
 		InputDeltaX, InputDeltaY: integer;
 		InputShiftPressed: boolean;
