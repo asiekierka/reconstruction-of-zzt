@@ -947,7 +947,7 @@ procedure HighScoresLoad;
 		end;
 		Close(f);
 		if IOResult <> 0 then begin
-			for i := 1 to 30 do begin
+			for i := 1 to HIGH_SCORE_COUNT do begin
 				HighScoreList[i].Name := '';
 				HighScoreList[i].Score := -1;
 			end;
@@ -1043,10 +1043,10 @@ procedure HighScoresAdd(score: integer);
 		i, listPos: integer;
 	begin
 		listPos := 1;
-		while (listPos <= 30) and (score < HighScoreList[listPos].Score) do
+		while (listPos <= HIGH_SCORE_COUNT) and (score < HighScoreList[listPos].Score) do
 			listPos := listPos + 1;
-		if (listPos <= 30) and (score > 0) then begin
-			for i := 29 downto listPos do
+		if (listPos <= HIGH_SCORE_COUNT) and (score > 0) then begin
+			for i := (HIGH_SCORE_COUNT - 1) downto listPos do
 				HighScoreList[i + 1] := HighScoreList[i];
 			HighScoreList[listPos].Score := score;
 			HighScoreList[listPos].Name := '-- You! --';
