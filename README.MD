@@ -39,6 +39,11 @@ However, please note that the community has since created more powerful editors,
 This is currently the recommended solution. Dr. Dos has created a [live stream series](https://www.youtube.com/watch?v=suIKp6HLBC8&list=PL71MurckxMeDCeOrKZ5Gd58GtC1ZmU-BW)
 on YouTube detailing how to use Zeta and KevEdit to create your own ZZT worlds.
 
+### How was the source code reconstructed?
+
+Very patiently! I wrote [an article on my blog](https://blog.asie.pl/2020/08/reconstructing-zzt/) in an attempt to describe the journey, as well as the tools and 
+techniques I utilized in the process.
+
 ### What is part of this open-source release?
 
 This release's binary distribution includes:
