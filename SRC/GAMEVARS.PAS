@@ -103,7 +103,7 @@ interface
 			StartPlayerX: byte;
 			StartPlayerY: byte;
 			TimeLimitSec: integer;
-			unk1: array[70 .. 85] of byte;
+			unkPad: array[70 .. 85] of byte;
 		end;
 		TWorldInfo = record
 			Ammo: integer;
