@@ -79,7 +79,7 @@ interface
 	procedure GameUpdateSidebar;
 	procedure GameAboutScreen;
 	procedure GamePlayLoop(boardChanged: boolean);
-	procedure DisplayMessage(time: integer; message: string);
+	procedure DisplayMessage(ticks: integer; message: string);
 	procedure BoardEnter;
 	procedure BoardPassageTeleport(x, y: integer);
 	procedure GameDebugPrompt;
@@ -1146,7 +1146,7 @@ procedure GameUpdateSidebar;
 		end;
 	end;
 
-procedure DisplayMessage(time: integer; message: string);
+procedure DisplayMessage(ticks: integer; message: string);
 	begin
 		if GetStatIdAt(0, 0) <> -1 then begin
 			RemoveStat(GetStatIdAt(0, 0));
@@ -1155,7 +1155,7 @@ procedure DisplayMessage(time: integer; message: string);
 
 		if Length(message) <> 0 then begin
 			AddStat(0, 0, E_MESSAGE_TIMER, 0, 1, StatTemplateDefault);
-			Board.Stats[Board.StatCount].P2 := Time div (TickTimeDuration + 1);
+			Board.Stats[Board.StatCount].P2 := ticks div (TickTimeDuration + 1);
 			Board.Info.Message := message;
 		end;
 	end;
