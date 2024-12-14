@@ -111,7 +111,7 @@ The Reconstruction of ZZT is licensed under the terms of the MIT license as desc
 ### Requirements
 
 * DOS-compatible environment (f.e. DOSBox),
-* Turbo Pascal 5.5 (if you don't have it, it's officially available for free via Embarcadero's Antique Software website).
+* Turbo Pascal 5.5 (if you don't have it, it's officially available free of charge for personal use on [Embarcadero's Antique Software website](https://cc.embarcadero.com/item/26015) - note that an account is required).
 
 ### Instructions
 
