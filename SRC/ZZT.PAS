@@ -54,21 +54,21 @@ procedure ParseArguments;
 
 procedure GameConfigure;
 	var
-		unk1: integer;
-		joystickEnabled, mouseEnabled: boolean;
+		tmp: integer;
+		joystickSupported, mouseSupported: boolean;
 		cfgFile: text;
 	begin
-		ParsingConfigFile := true;
+		ConfigInvalid := true;
 		EditorEnabled := true;
-		ConfigRegistration := '';
+		ConfigRegistrant := '';
 		ConfigWorldFile := '';
-		GameVersion := '3.2';
+		SerialNumber := '3.2';
 
 		Assign(cfgFile, 'zzt.cfg');
 		Reset(cfgFile);
 		if IOResult = 0 then begin
 			Readln(cfgFile, ConfigWorldFile);
-			Readln(cfgFile, ConfigRegistration);
+			Readln(cfgFile, ConfigRegistrant);
 		end;
 		if ConfigWorldFile[1] = '*' then begin
 			EditorEnabled := false;
@@ -79,10 +79,10 @@ procedure GameConfigure;
 		end;
 
 		InputInitDevices;
-		joystickEnabled := InputJoystickEnabled;
-		mouseEnabled := InputMouseEnabled;
+		joystickSupported := InputJoystickEnabled;
+		mouseSupported := InputMouseEnabled;
 
-		ParsingConfigFile := false;
+		ConfigInvalid := false;
 
 		Window(1, 1, 80, 25);
 		TextBackground(Black);
@@ -92,7 +92,7 @@ procedure GameConfigure;
 		Writeln;
 		Writeln('                                 <=-  ZZT  -=>');
 		TextColor(Yellow);
-		if Length(ConfigRegistration) = 0 then
+		if Length(ConfigRegistrant) = 0 then
 			Writeln('                             Shareware version 3.2')
 		else
 			Writeln('                                  Version  3.2');
@@ -156,7 +156,7 @@ begin
 
 	if not GameTitleExitRequested then begin
 		VideoInstall(80, Blue);
-		OrderPrintId := @GameVersion;
+		OrderPrintId := @SerialNumber;
 		TextWindowInit(5, 3, 50, 18);
 		New(IoTmpBuf);
 
@@ -183,7 +183,7 @@ begin
 	TextAttr := InitialTextAttr;
 	ClrScr;
 
-	if Length(ConfigRegistration) = 0 then begin
+	if Length(ConfigRegistrant) = 0 then begin
 		GamePrintRegisterMessage;
 	end else begin
 		Writeln;

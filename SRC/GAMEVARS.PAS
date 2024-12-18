@@ -203,11 +203,11 @@ interface
 		DebugEnabled: boolean;
 
 		HighScoreList: THighScoreList;
-		ConfigRegistration: string;
+		ConfigRegistrant: string;
 		ConfigWorldFile: TString50;
 		EditorEnabled: boolean;
-		GameVersion: TString50;
-		ParsingConfigFile: boolean;
+		SerialNumber: TString50;
+		ConfigInvalid: boolean;
 		ResetConfig: boolean; { This flag is a remnant from ZZT 3.0. }
 		JustStarted: boolean;
 
