@@ -104,6 +104,8 @@ The Reconstruction of ZZT is licensed under the terms of the MIT license as desc
   vous allez vendre. Mais la vente de LZEXE.EXE est interdite.
 ```
 
+Update: As of May 2025, this version of LZEXE appears to have [MIT-licensed source code](https://bellard.org/lzexe/).
+
 * **MISC/relocfix.py**: Copyright (c) 2020 Adrian Siekierka, licensed under "zero-clause" BSD
 
 ## Compiling
